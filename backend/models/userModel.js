@@ -4,10 +4,10 @@ const userModel = mongoose.Schema(
   {
     name: {
       type: String,
-      required: true,
       trim: true,
       minlength: 2,
       maxlength: 50,
+      default: "",
     },
     email: {
       type: String,
@@ -18,9 +18,11 @@ const userModel = mongoose.Schema(
       index: true,
     },
     avatar: { type: String, default: "" },
-    password: { type: String, required: true, minlength: 6, select: false },
+
     role: { type: String, enum: ["admin", "user"], default: "user" },
     isVerified: { type: Boolean, default: false },
+    verificationToken: { type: String, default: null },
+    tokenExpiry: { type: Date, default: null },
   },
   {
     timestamps: true,
