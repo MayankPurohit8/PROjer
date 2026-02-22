@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import { jwt } from "jsonwebtoken";
 export const register = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { name, email, password } = req.body;
 
     if (!email) {
       return res.status(401).json({ message: "email not provided" });
@@ -22,6 +22,7 @@ export const register = async (req, res) => {
     const newUser = await User.create(
       {
         email: email,
+        name: name,
       },
       { new: true }
     );
